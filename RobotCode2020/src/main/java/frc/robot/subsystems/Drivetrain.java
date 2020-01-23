@@ -13,15 +13,12 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
-/**
- * Add your docs here.
- */
+/** Add your docs here. */
 public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   Spark leftMotor = new Spark(RobotMap.DRIVE_LEFT_PORT);
-  
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
