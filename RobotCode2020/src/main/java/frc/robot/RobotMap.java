@@ -26,5 +26,8 @@ public class RobotMap {
 
   public static final int JOYSTICK_PORT = 0;
   public static final int XBOX_X_AXIS = 0; 
-  public static final int XBOX_Y_AXIS = 0; 
+  public static final int XBOX_Y_AXIS = 0;
+  
+  public static final int DRIVE_LEFT_PORT = 0;
+  public static final int DRIVE_RIGHT_PORT = 1; 
 }
