@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
+  // subsystems
   public static Mailbox mail = new Mailbox(); 
   public static Drivetrain drivetrain = new Drivetrain();
 

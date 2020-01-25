@@ -20,7 +20,7 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
-  public Joystick controller = new Joystick(0);
+  public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
@@ -41,10 +41,11 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+  
   public double getX() {
-    return controller.getRawAxis(0);
+    return controller.getRawAxis(RobotMap.XAXIS_ID);
   }
   public double getY() {
-    return controller.getRawAxis(1);
+    return controller.getRawAxis(RobotMap.XAXIS_ID);
   }
 }

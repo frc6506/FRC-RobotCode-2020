@@ -25,8 +25,14 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   // arm motor ID; placeholder for now
+  public static final int CONTROLLER_PORT_ID = 0;
+  public static final int XAXIS_ID = 0;
+  public static final int YAXIS_ID = 0;
+
   public static final int MOTOR_ARM_ID = 0;
+
   public static final int MOTOR_MAILBOX_ID = 0;
+
   public static final int MOTOR_LEFT_ID = 0;
   public static final int MOTOR_RIGHT_ID = 0;
 
