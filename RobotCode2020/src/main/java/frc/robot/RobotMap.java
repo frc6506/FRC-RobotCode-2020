@@ -26,4 +26,8 @@ public class RobotMap {
 
   // arm motor ID; placeholder for now
   public static final int MOTOR_ARM_ID = 0;
+  public static final int MOTOR_MAILBOX_ID = 0;
+  public static final int MOTOR_LEFT_ID = 0;
+  public static final int MOTOR_RIGHT_ID = 0;
+
 }
