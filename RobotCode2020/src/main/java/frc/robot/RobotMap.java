@@ -36,4 +36,5 @@ public class RobotMap {
   public static final int MOTOR_LEFT_ID = 0;
   public static final int MOTOR_RIGHT_ID = 0;
 
+  public static final int MOTOR_CLIMB_ID = 0;
 }
