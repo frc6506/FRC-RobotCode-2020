@@ -17,7 +17,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 
 import frc.robot.subsystems.Mailbox;
 import frc.robot.subsystems.Drivetrain;
-
+import frc.robot.subsystems.Arm;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
   // subsystems
   public static Mailbox mail = new Mailbox(); 
   public static Drivetrain drivetrain = new Drivetrain();
+  public static Arm armMotor = new Arm();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
