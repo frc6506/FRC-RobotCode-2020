@@ -9,12 +9,24 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import frc.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 /**
  * Add your docs here.
  */
 public class Mailbox extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  TalonSRX mailboxMotor = new TalonSRX(RobotMap.MOTOR_MAILBOX_ID);
+
+  // Wrapper method
+  public void turn(double voltagePercent) {
+    mailboxMotor.set(ControlMode.PercentOutput, voltagePercent);
+  }
 
   @Override
   public void initDefaultCommand() {
