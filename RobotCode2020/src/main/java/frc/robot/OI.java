@@ -42,10 +42,8 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
   
-  public double getX() {
-    return controller.getRawAxis(RobotMap.XAXIS_ID);
-  }
-  public double getY() {
-    return controller.getRawAxis(RobotMap.XAXIS_ID);
+
+  public double getAxis(int axis) {
+    return controller.getRawAxis(axis);
   }
 }
