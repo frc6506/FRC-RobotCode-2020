@@ -8,9 +8,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
-/** Add your docs here. */
-public class Rollers extends Subsystem {
+/**
+ * Add your docs here.
+ */
+public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
