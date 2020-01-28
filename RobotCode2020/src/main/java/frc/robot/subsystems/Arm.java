@@ -9,6 +9,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
 /**
  * Add your docs here.
@@ -16,10 +19,16 @@ import frc.robot.RobotMap;
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  TalonSRX armMotor = new TalonSRX(RobotMap.MOTOR_ARM_ID);
+  PIDController pidController = new PIDController(0.0002, 0.0000001, 0);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+  public void turn(double value) {
+    armMotor.set(ControlMode.PercentOutput, value);
+  }
+
 }
