@@ -14,11 +14,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-/**
- * Add your docs here.
- */
-
-
+/** Add your docs here. */
 public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -35,7 +31,6 @@ public class Drivetrain extends Subsystem {
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
   }
-
 
   @Override
   public void initDefaultCommand() {
