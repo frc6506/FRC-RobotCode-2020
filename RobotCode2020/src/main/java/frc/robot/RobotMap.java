@@ -38,6 +38,8 @@ public class RobotMap {
   // left joystick
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
   public static final int JOYSTICK_DRIVE_ROTATION_ID = 0;
+  public static final int A_BUTTON_ID = 0;
+  public static final int B_BUTTON_ID = 0;
   // backwards button
   // public static final int JOYSTICK_LEFT_TRIGGER_ID = 0;
 
