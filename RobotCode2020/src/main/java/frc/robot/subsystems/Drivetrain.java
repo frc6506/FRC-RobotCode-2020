@@ -55,6 +55,14 @@ public class Drivetrain extends Subsystem {
     return average;
   }
 
+  public double returnHorizontalOffset() {
+    return limelightTable.getEntry("tx").getDouble(0);
+  }
+
+  public double returnVerticalOffset() {
+    return limelightTable.getEntry("ty").getDouble(0);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

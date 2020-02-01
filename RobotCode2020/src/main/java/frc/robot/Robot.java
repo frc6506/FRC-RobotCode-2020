@@ -53,7 +53,11 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    // ***DON'T DO THIS IN FINAL CODE, BAD PRACTICE; WORKS BUT ONLY FOR TESTING***
+    SmartDashboard.putNumber("Horizontal Offset", drivetrain.returnHorizontalOffset());
+    SmartDashboard.putNumber("Vertical Offset", drivetrain.returnVerticalOffset());
+  }
 
   /**
    * This function is called once each time the robot enters Disabled mode. You can use it to reset
