@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 // limelight stuff
@@ -31,6 +33,10 @@ public class Drivetrain extends Subsystem {
   // limelight table to read offset value from
   NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
 
+  // encoders
+  CANEncoder lEncoder = leftMotor.getEncoder();
+  CANEncoder rEncoder = rightMotor.getEncoder();
+
   // Wrapper classes
   public void drive(double speed, double rotation) {
     dualDrive.arcadeDrive(speed, rotation);
@@ -38,6 +44,12 @@ public class Drivetrain extends Subsystem {
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  // getters
+  public double getPosition() {
+    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
+    return average;
   }
 
   @Override
