@@ -21,7 +21,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 import frc.robot.commands.Drive;
 
-/** Drivetrain class w/ limelight vision tracking*/
+/** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // Drivetrain
   CANSparkMax leftMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_ID, MotorType.kBrushless);
