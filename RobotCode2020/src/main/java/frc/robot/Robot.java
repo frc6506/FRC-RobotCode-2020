@@ -15,6 +15,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 
+import frc.robot.subsystems.Mailbox;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Climb;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -24,6 +29,12 @@ import frc.robot.subsystems.ExampleSubsystem;
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
+
+  // subsystems
+  public static Mailbox mail = new Mailbox();
+  public static Drivetrain drivetrain = new Drivetrain();
+  public static Arm armMotor = new Arm();
+  public static Climb climbDevice = new Climb();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

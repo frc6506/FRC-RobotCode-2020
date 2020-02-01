@@ -23,10 +23,26 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  public static final int JOYSTICK_PORT = 0;
-  public static final int XBOX_X_AXIS = 0;
-  public static final int XBOX_Y_AXIS = 0;
+  // arm motor ID; placeholder for now
+  public static final int CONTROLLER_PORT_ID = 0;
 
-  public static final int DRIVE_LEFT_PORT = 0;
-  public static final int DRIVE_RIGHT_PORT = 1;
+  public static final int MOTOR_ARM_ID = 0;
+
+  public static final int MOTOR_MAILBOX_ID = 0;
+
+  public static final int MOTOR_LEFT_ID =
+      12; // Fliped sides virutally becuaes of turning issues  //nevermind
+  public static final int MOTOR_RIGHT_ID = 10;
+
+  public static final int MOTOR_CLIMB_ID = 0;
+
+  // left joystick
+  public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
+  public static final int JOYSTICK_DRIVE_ROTATION_ID = 0;
+  public static final int A_BUTTON_ID = 0;
+  public static final int B_BUTTON_ID = 0;
+  // backwards button
+  // public static final int JOYSTICK_LEFT_TRIGGER_ID = 0;
+
+  // public static final int JOYSTICK_MAILBOX_ROLLERS_ID = 0;
 }

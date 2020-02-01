@@ -8,7 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
  * and command groups that allow control of the robot.
@@ -21,16 +22,10 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
+  public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
+  public Button abutton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
+  public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
 
-  Joystick xbox = new Joystick(RobotMap.JOYSTICK_PORT);
-
-  public double getXboxX() {
-    return xbox.getRawAxis(RobotMap.XBOX_X_AXIS);
-  }
-
-  public double getXboxY() {
-    return xbox.getRawAxis(RobotMap.XBOX_Y_AXIS);
-  }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
@@ -51,4 +46,7 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
+  public double getAxis(int axis) {
+    return controller.getRawAxis(axis);
+  }
 }

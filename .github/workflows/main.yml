@@ -1,14 +1,7 @@
-name: Build FRC Java with Gradle
+name: Build FRC Java with Gradle 2
 
 on:
-  push:
-    branches:
-      - master
-      - release/*
-  pull_request:
-    branches: 
-      - master
-        - release/*
+  - push
 
 jobs:
   build:
