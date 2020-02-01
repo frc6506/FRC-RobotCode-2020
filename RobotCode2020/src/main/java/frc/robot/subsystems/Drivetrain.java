@@ -37,6 +37,9 @@ public class Drivetrain extends Subsystem {
   CANEncoder lEncoder = leftMotor.getEncoder();
   CANEncoder rEncoder = rightMotor.getEncoder();
 
+  // average
+  double average = 0.0;
+
   // Wrapper classes
   public void drive(double speed, double rotation) {
     dualDrive.arcadeDrive(speed, rotation);
