@@ -1,6 +1,6 @@
 name: Google Java Formatter
 
-on: [push]
+on: [push] [pull-request]
 
 jobs:
   formatting:
