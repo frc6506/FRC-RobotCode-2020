@@ -26,8 +26,10 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID) * -1 * InvertDriveSet.getInverted();
-    double rotation = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID) * InvertDriveSet.getInverted();
+    double speed =
+        Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID) * -1 * InvertDriveSet.getInverted();
+    double rotation =
+        Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID) * InvertDriveSet.getInverted();
 
     Robot.drivetrain.drive(speed, rotation);
   }
