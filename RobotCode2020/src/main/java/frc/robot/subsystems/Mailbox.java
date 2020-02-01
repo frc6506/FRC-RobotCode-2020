@@ -13,9 +13,10 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-/**
- * Add your docs here.
- */
+
+import frc.robot.commands.MailboxSet;
+
+/** Add your docs here. */
 public class Mailbox extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -31,5 +32,6 @@ public class Mailbox extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new MailboxSet());
   }
 }

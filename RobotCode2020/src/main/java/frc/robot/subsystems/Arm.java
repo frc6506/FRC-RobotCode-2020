@@ -14,9 +14,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.controller.PIDController;
 
-/**
- * Add your docs here.
- */
+import frc.robot.commands.ArmSet;
+
+/** Add your docs here. */
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -27,9 +27,10 @@ public class Arm extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ArmSet());
   }
+
   public void turn(double value) {
     armMotor.set(ControlMode.PercentOutput, value);
   }
-  
 }
