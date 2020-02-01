@@ -14,6 +14,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import frc.robot.commands.Drive;
+
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
@@ -36,5 +38,6 @@ public class Drivetrain extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Drive());
   }
 }
