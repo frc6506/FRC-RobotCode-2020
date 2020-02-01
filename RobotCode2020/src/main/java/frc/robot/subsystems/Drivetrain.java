@@ -14,16 +14,22 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+// limelight stuff
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 import frc.robot.commands.Drive;
 
-/** Add your docs here. */
+/** Drivetrain class w/ limelight vision tracking*/
 public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  // Drivetrain
   CANSparkMax leftMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_ID, MotorType.kBrushless);
   CANSparkMax rightMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_ID, MotorType.kBrushless);
-
   DifferentialDrive dualDrive = new DifferentialDrive(leftMotor, rightMotor);
+
+  // limelight table to read offset value from
+  NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
 
   // Wrapper classes
   public void drive(double speed, double rotation) {
