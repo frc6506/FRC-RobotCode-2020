@@ -8,28 +8,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.commands.InvertDriveSet;
 
-public class Drive extends Command {
-  public Drive() {
+public class InvertDriveSet extends Command {
+  private static int inverted;
+
+  public InvertDriveSet() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    inverted = 1;
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID) * -1 * InvertDriveSet.getInverted();
-    double rotation = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID) * InvertDriveSet.getInverted();
-
-    Robot.drivetrain.drive(speed, rotation);
+    inverted = -1;
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,10 +37,17 @@ public class Drive extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    inverted = 1;
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+  }
+
+  public static int getInverted() {
+    return inverted;
+  }
 }

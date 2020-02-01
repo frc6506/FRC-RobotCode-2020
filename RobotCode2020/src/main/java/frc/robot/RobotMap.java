@@ -42,7 +42,9 @@ public class RobotMap {
   public static final int A_BUTTON_ID = 0;
   public static final int B_BUTTON_ID = 0;
   // backwards button
+  public static final int LB_BUTTON_ID = 4;
   // public static final int JOYSTICK_LEFT_TRIGGER_ID = 0;
+
 
   // public static final int JOYSTICK_MAILBOX_ROLLERS_ID = 0;
 }
