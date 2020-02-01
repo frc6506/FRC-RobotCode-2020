@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import frc.robot.commands.Drive;
@@ -25,6 +27,12 @@ public class Drivetrain extends Subsystem {
 
   DifferentialDrive dualDrive = new DifferentialDrive(leftMotor, rightMotor);
 
+  // encoders
+  CANEncoder lEncoder = leftMotor.getEncoder();
+  CANEncoder rEncoder = rightMotor.getEncoder();
+
+  private double average;
+
   // Wrapper classes
   public void drive(double speed, double rotation) {
     dualDrive.arcadeDrive(speed, rotation);
@@ -32,6 +40,12 @@ public class Drivetrain extends Subsystem {
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  // getters
+  public double getPosition() {
+    average = (lEncoder.getPosition() + rEncoder.getPosition())/2.0;
+    return average;
   }
 
   @Override
