@@ -44,7 +44,7 @@ public class Drivetrain extends Subsystem {
 
   // getters
   public double getPosition() {
-    average = (lEncoder.getPosition() + rEncoder.getPosition())/2.0;
+    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
     return average;
   }
 
