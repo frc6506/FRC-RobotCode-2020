@@ -17,6 +17,7 @@ import frc.robot.subsystems.Mailbox;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Climb;
+import frc.robot.utils.Limelight; 
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -53,7 +54,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    SmartDashboard.putNumber("tx", Limelight.returnHorizontalOffset()); 
+    SmartDashboard.putNumber("ty", Limelight.returnVerticalOffset()); 
+  }
 
   /**
    * This function is called once each time the robot enters Disabled mode. You can use it to reset
