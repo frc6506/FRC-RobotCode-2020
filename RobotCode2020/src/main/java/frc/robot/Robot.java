@@ -42,6 +42,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    drivetrain.initializeGyro();
+    drivetrain.calibrate();
     m_oi = new OI();
   }
 

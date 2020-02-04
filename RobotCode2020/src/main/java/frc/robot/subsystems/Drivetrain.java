@@ -8,7 +8,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.RobotMap;
+
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
@@ -36,17 +41,40 @@ public class Drivetrain extends Subsystem {
   // encoders
   CANEncoder lEncoder = leftMotor.getEncoder();
   CANEncoder rEncoder = rightMotor.getEncoder();
-
-  // average
   double average = 0.0;
 
-  // Wrapper classes
+  // Gyro
+  public AHRS gyro;
+
+  public void initializeGyro() {
+    try {
+      new AHRS(SPI.Port.kMXP);
+    } catch (RuntimeException ex) {
+      DriverStation.reportError("Error instantiating navX MXP", true);
+    }
+  }
+
+  public void calibrate() {
+    gyro.zeroYaw();
+  }
+
+  // PID
+  double P = 0.002;
+  double I = 0;
+  double D = 0;
+  PIDController pid = new PIDController(P, I, D);
+
+  // Driving wrapper classes
   public void drive(double speed, double rotation) {
     dualDrive.arcadeDrive(speed, rotation);
   }
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  public void driveStraight(double speed) {
+    dualDrive.arcadeDrive(speed, pid.calculate(gyro.getAngle(), 0));
   }
 
   // getters
