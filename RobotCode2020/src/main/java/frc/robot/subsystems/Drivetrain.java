@@ -72,7 +72,7 @@ public class Drivetrain extends Subsystem {
   double D = 0;
   PIDController pid = new PIDController(P, I, D);
 
-  // Driving wrapper classes
+  // Driving wrapper method
   public void drive(double speed, double rotation) {
     dualDrive.arcadeDrive(speed, rotation);
   }
@@ -83,6 +83,11 @@ public class Drivetrain extends Subsystem {
 
   public void driveStraight(double speed) {
     dualDrive.arcadeDrive(speed, pid.calculate(gyro.getAngle(), 0));
+    SmartDashboard.putNumber("gyro", gyro.getAngle());
+  }
+
+  public void rotateToAngle(double angle) {
+    dualDrive.arcadeDrive(0, pid.calculate(gyro.getAngle(), angle));
     SmartDashboard.putNumber("gyro", gyro.getAngle());
   }
 
