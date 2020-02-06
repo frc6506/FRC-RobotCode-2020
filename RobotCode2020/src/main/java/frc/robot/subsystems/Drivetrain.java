@@ -27,28 +27,36 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 import frc.robot.commands.Drive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // Drivetrain
-  CANSparkMax leftMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_ID, MotorType.kBrushless);
-  CANSparkMax rightMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_ID, MotorType.kBrushless);
-  DifferentialDrive dualDrive = new DifferentialDrive(leftMotor, rightMotor);
+  CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
+  CANSparkMax rightBackMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
+  CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
+  CANSparkMax rightFrontMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
+  DifferentialDrive dualDrive = new DifferentialDrive(leftBackMotor, rightBackMotor);
 
   // limelight table to read offset value from
   NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
 
   // encoders
-  CANEncoder lEncoder = leftMotor.getEncoder();
-  CANEncoder rEncoder = rightMotor.getEncoder();
+  CANEncoder lEncoder = leftBackMotor.getEncoder();
+  CANEncoder rEncoder = rightBackMotor.getEncoder();
   double average = 0.0;
 
   // Gyro
   public AHRS gyro;
 
+  public Drivetrain() {
+    leftFrontMotor.follow(leftBackMotor);
+    rightFrontMotor.follow(rightBackMotor);
+  }
+
   public void initializeGyro() {
     try {
-      new AHRS(SPI.Port.kMXP);
+      gyro = new AHRS(SPI.Port.kMXP);
     } catch (RuntimeException ex) {
       DriverStation.reportError("Error instantiating navX MXP", true);
     }
@@ -59,7 +67,7 @@ public class Drivetrain extends Subsystem {
   }
 
   // PID
-  double P = 0.002;
+  double P = 0.09;
   double I = 0;
   double D = 0;
   PIDController pid = new PIDController(P, I, D);
@@ -75,6 +83,7 @@ public class Drivetrain extends Subsystem {
 
   public void driveStraight(double speed) {
     dualDrive.arcadeDrive(speed, pid.calculate(gyro.getAngle(), 0));
+    SmartDashboard.putNumber("gyro", gyro.getAngle());
   }
 
   // getters
