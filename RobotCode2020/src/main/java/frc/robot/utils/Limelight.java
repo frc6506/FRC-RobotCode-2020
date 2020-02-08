@@ -5,7 +5,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight {
   public static NetworkTable limelightTable =
-      NetworkTableInstance.getDefault().getTable("limelight");
+      NetworkTableInstance.getDefault().getTable("limelight-bazicrg");
 
   public static double returnHorizontalOffset() {
     return limelightTable.getEntry("tx").getDouble(0.00);
