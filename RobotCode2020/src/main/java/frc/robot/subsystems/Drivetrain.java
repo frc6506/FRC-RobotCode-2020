@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Spark;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -26,19 +27,14 @@ import frc.robot.commands.Drive;
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // Drivetrain
-  CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
-  CANSparkMax rightBackMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
-  CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
-  CANSparkMax rightFrontMotor =
-      new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
-  DifferentialDrive dualDrive = new DifferentialDrive(leftBackMotor, rightBackMotor);
+  
+  Spark leftMotor = new Spark(RobotMap.MOTOR_LEFT_ID);
+  Spark rightMotor = new Spark(RobotMap.MOTOR_RIGHT_ID);
+
+  DifferentialDrive dualDrive = new DifferentialDrive(leftMotor, rightMotor);
 
   // limelight table to read offset value from
   NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
-
-  // encoders
-  CANEncoder lEncoder = leftBackMotor.getEncoder();
-  CANEncoder rEncoder = rightBackMotor.getEncoder();
 
   // average
   double average = 0.0;
@@ -50,12 +46,6 @@ public class Drivetrain extends Subsystem {
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
-  }
-
-  // getters
-  public double getPosition() {
-    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
-    return average;
   }
 
   @Override
