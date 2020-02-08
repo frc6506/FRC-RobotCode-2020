@@ -27,7 +27,7 @@ import frc.robot.commands.Drive;
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // Drivetrain
-  
+
   Spark leftMotor = new Spark(RobotMap.MOTOR_LEFT_ID);
   Spark rightMotor = new Spark(RobotMap.MOTOR_RIGHT_ID);
 
