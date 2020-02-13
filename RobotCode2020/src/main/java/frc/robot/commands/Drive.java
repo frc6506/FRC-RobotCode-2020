@@ -10,7 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.InvertDriveSet;
 
 public class Drive extends Command {
   public Drive() {
@@ -27,10 +26,10 @@ public class Drive extends Command {
   @Override
   protected void execute() {
     double speed =
-        Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID) * -1 * InvertDriveSet.getInverted();
+      -1 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID);
     double rotation =
-        Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID) * InvertDriveSet.getInverted();
-
+      Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID);
+    
     Robot.drivetrain.drive(speed, rotation);
   }
 

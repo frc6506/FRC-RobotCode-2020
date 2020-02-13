@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class MailboxSet extends Command {
   public MailboxSet() {
@@ -24,8 +25,10 @@ public class MailboxSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double turnValue = Robot.m_oi.getAxis(0);
-    Robot.mail.turn(turnValue);
+    double intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID);
+    double output = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID);
+    double foo = intake - output;
+    Robot.mail.turn(foo);
   }
 
   // Make this return true when this Command no longer needs to run execute()

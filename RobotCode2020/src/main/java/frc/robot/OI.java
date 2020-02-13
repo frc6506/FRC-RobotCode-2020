@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.InvertDriveSet;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -30,9 +29,7 @@ public class OI {
   public Button leftBumperButton = new JoystickButton(controller, RobotMap.LB_BUTTON_ID);
 
   public OI() {
-    leftBumperButton.whileHeld(
-        new InvertDriveSet()); // Donst' wokr Ill just do it kidna janl in the acutl file  /pk me
-                               // not smart
+    
   }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to

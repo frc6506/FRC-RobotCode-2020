@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ArmSet extends Command {
@@ -24,7 +25,7 @@ public class ArmSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.armMotor.turn(Robot.m_oi.getAxis(0));
+    Robot.armMotor.turn(-1.0 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_CONTROL_ID));
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +36,9 @@ public class ArmSet extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.armMotor.turn(0);
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
