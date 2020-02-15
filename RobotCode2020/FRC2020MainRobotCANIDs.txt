@@ -1,0 +1,19 @@
++=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======
+FRC 2020 Main Robot CAN ID's
++=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======
+TYPE/Catagory	BusType	ID/Rnge	NAME			CAN NAME
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------
+CONTROL:	CAN	0-09
+PDP		CAN	0				PDP (Device ID 0)
+
+DRIVEBASE:	CAN	10-19
+SparkMax	CAN	10	LEFT-BACK
+SparkMax	CAN	11	LEFT-FRONT
+SparkMax	CAN	12	RIGHT-BACK
+SparkMax	CAN	13	RIGHT-FRONT
+
+BOXARM:	CAN 20-29
+TalonSRX	CAN	20	LEFT-(RAISE/LOWER)	LEFT-(R/L)R- Talon SRX (Device ID 20)
+
+INTAKE:	CAN 30-39
+VictorSPX	CAN	31	RIGHT			IntakeRight [Victor SPX (Device ID 31)]
