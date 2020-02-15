@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.RobotMap;
 
 public class ArmSet extends Command {
   public ArmSet() {
@@ -24,13 +25,14 @@ public class ArmSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.armMotor.turn(Robot.m_oi.getAxis(0));
+    //System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1);
+    Robot.armMotor.turn(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1 * .5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

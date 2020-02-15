@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class MailboxSet extends Command {
   public MailboxSet() {
@@ -24,8 +25,20 @@ public class MailboxSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double turnValue = Robot.m_oi.getAxis(0);
-    Robot.mail.turn(turnValue);
+    //double turnValue = 0;
+    System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_IN_ID));
+    System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_OUT_ID));
+    if(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_IN_ID) > 0.5) {
+      Robot.mail.turn(1.0);
+    }
+    else if(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_OUT_ID) > 0.5) {
+      Robot.mail.turn(-1.0);
+    }
+    else {
+      System.out.println("DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");
+      Robot.mail.turn(0);
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
