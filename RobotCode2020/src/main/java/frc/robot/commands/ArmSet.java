@@ -25,7 +25,7 @@ public class ArmSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1);
+    // System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1);
     Robot.armMotor.turn(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1 * .5);
   }
 
