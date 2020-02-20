@@ -33,8 +33,8 @@ public class MailboxSet extends Command {
     } else if (Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_OUT_ID) > 0.5) {
       Robot.mail.turn(-1.0);
     } else {
-      System.out.println(
-          "DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");
+      /*System.out.println(
+          "DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");*/
       Robot.mail.turn(0);
     }
   }
