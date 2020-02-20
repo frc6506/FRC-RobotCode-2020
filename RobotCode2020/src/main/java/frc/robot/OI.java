@@ -28,9 +28,8 @@ public class OI {
   public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
   public Button leftBumperButton = new JoystickButton(controller, RobotMap.LB_BUTTON_ID);
 
-  public OI() {
-    
-  }
+  public OI() {}
+
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.

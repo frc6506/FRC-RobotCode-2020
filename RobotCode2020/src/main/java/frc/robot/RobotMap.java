@@ -32,7 +32,7 @@ public class RobotMap {
 
   public static final int MOTOR_LEFT_BACK_ID = 12;
   public static final int MOTOR_RIGHT_BACK_ID = 10;
-  public static final int MOTOR_LEFT_FRONT_ID = 13; 
+  public static final int MOTOR_LEFT_FRONT_ID = 13;
   public static final int MOTOR_RIGHT_FRONT_ID = 11;
 
   public static final int MOTOR_CLIMB_ID = 0;
