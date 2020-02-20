@@ -17,4 +17,4 @@ jobs:
     - name: Build with Gradle
       run: |
         cd "RobotCode2020"
-        .\RobotCode2020\gradlew.bat build
+        .\gradlew.bat build
