@@ -26,9 +26,9 @@ public class RobotMap {
   // arm motor ID; placeholder for now
   public static final int CONTROLLER_PORT_ID = 0;
 
-  public static final int MOTOR_ARM_ID = 0;
+  public static final int MOTOR_ARM_ID = 20;
 
-  public static final int MOTOR_MAILBOX_ID = 0;
+  public static final int MOTOR_MAILBOX_ID = 31;
 
   public static final int MOTOR_LEFT_BACK_ID =
       12; // Fliped sides virutally becuaes of turning issues  //nevermind
@@ -42,10 +42,15 @@ public class RobotMap {
   // left joystick
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
   public static final int JOYSTICK_DRIVE_ROTATION_ID = 0;
-  public static final int A_BUTTON_ID = 0;
-  public static final int B_BUTTON_ID = 0;
+  public static final int A_BUTTON_ID = 1; // 1-based
+  public static final int B_BUTTON_ID = 2;
   // backwards button
   // public static final int JOYSTICK_LEFT_TRIGGER_ID = 0;
+
+  public static final int JOYSTICK_ARM_SET_ID = 5;
+
+  public static final int JOYSTICK_MALIBOX_IN_ID = 2;
+  public static final int JOYSTICK_MALIBOX_OUT_ID = 3;
 
   // public static final int JOYSTICK_MAILBOX_ROLLERS_ID = 0;
 }
