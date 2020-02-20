@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 // limelight stuff
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
+//import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 import frc.robot.commands.Drive;
@@ -75,7 +75,7 @@ public class Drivetrain extends Subsystem {
 
   // Driving wrapper method
   public void drive(double speed, double rotation) {
-    dualDrive.arcadeDrive(speed, rotation);
+    dualDrive.arcadeDrive(Math.pow(speed, 3), rotation, true);
   }
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
