@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.robot.commands.MailboxSet;
 
@@ -21,7 +21,7 @@ public class Mailbox extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  TalonSRX mailboxMotor = new TalonSRX(RobotMap.MOTOR_MAILBOX_ID);
+  VictorSPX mailboxMotor = new VictorSPX(RobotMap.MOTOR_MAILBOX_ID);
 
   // Wrapper method
   public void turn(double voltagePercent) {
