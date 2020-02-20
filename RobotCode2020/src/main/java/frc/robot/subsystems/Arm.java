@@ -20,8 +20,8 @@ import frc.robot.commands.ArmSet;
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  // TalonSRX armMotor = new TalonSRX(RobotMap.MOTOR_ARM_ID);
-  PIDController pidController = new PIDController(0.0002, 0.0000001, 0);
+  TalonSRX armMotor = new TalonSRX(RobotMap.MOTOR_ARM_ID);
+  // PIDController pidController = new PIDController(0.0002, 0.0000001, 0);
 
   @Override
   public void initDefaultCommand() {
@@ -31,6 +31,6 @@ public class Arm extends Subsystem {
   }
 
   public void turn(double value) {
-    // armMotor.set(ControlMode.PercentOutput, value);
+    armMotor.set(ControlMode.PercentOutput, value);
   }
 }
