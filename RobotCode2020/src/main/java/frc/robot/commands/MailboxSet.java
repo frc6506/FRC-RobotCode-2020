@@ -34,7 +34,7 @@ public class MailboxSet extends Command {
       Robot.mail.turn(-1.0);
     } else {
       /*System.out.println(
-          "DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");*/
+      "DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");*/
       Robot.mail.turn(0);
     }
   }
