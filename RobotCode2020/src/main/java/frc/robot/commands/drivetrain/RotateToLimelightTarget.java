@@ -5,27 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.Robot;
+import frc.robot.utils.Limelight;
 
-public class RotateToAngle extends Command {
+/**
+ * Rotates to a limelight target.
+ */
+public class RotateToLimelightTarget extends Command {
   private double P = 0.04;
   private double I = 0.0;
   private double D = 0.0055;
   private PIDController pid = new PIDController(P, I, D);
-  private double gyroSetpoint;
   private double commandStartTime;
 
-  public RotateToAngle(double gsp) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  public RotateToLimelightTarget() {
     requires(Robot.drivetrain);
-    gyroSetpoint = gsp;
-    pid.setTolerance(0.05 * gyroSetpoint);
+    pid.setTolerance(0.05);
     commandStartTime = Timer.getFPGATimestamp();
   }
 
@@ -38,10 +38,11 @@ public class RotateToAngle extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.drive(0, pid.calculate(Robot.drivetrain.gyro.getAngle(), gyroSetpoint));
+    Robot.drivetrain.drive(0, pid.calculate(Limelight.returnHorizontalOffset(), 0));
   }
 
   // Make this return true when this Command no longer needs to run execute()
+  // Robot sometimes doesn't hit setpoint 100%, call stop based off timer
   @Override
   protected boolean isFinished() {
     if (Timer.getFPGATimestamp() > commandStartTime + 2) {
@@ -53,10 +54,12 @@ public class RotateToAngle extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+  }
 }

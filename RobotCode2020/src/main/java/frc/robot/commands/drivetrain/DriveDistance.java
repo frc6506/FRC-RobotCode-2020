@@ -5,46 +5,58 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
-public class Drive extends Command {
-  public Drive() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class DriveDistance extends Command {
+  private double P = 0.04;
+  private double I = 0.0;
+  private double D = 0.0055;
+  private PIDController pid = new PIDController(P, I, D);
+  private int ticks;
+  
+  /**
+   * Drives robot a set distance w/ PID loop to keep it straight
+   * @param distance distance to travel in ft
+   */
+  public DriveDistance(double distance) {
     requires(Robot.drivetrain);
+    // calculate # of ticks based off distance
+    ticks = (int)(distance / 6 * Math.PI * 360);
+    pid.setTolerance(0.05 * ticks);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed =
-      -1 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID);
-    double rotation =
-      Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID);
-    
-    Robot.drivetrain.drive(speed, rotation);
+    double forwardsSpeed = pid.calculate(Robot.drivetrain.getPosition(),ticks);
+    double turnSpeed = pid.calculate(Robot.drivetrain.gyro.getAngle(), 0);
+    Robot.drivetrain.drive(forwardsSpeed,turnSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return pid.atSetpoint();
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.drivetrain.drive(0,0);
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+  }
 }

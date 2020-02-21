@@ -5,41 +5,58 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class MailboxSet extends Command {
-  public MailboxSet() {
-    requires(Robot.mail);
+public class RotateToAngle extends Command {
+  private double P = 0.04;
+  private double I = 0.0;
+  private double D = 0.0055;
+  private PIDController pid = new PIDController(P, I, D);
+  private double gyroSetpoint;
+  private double commandStartTime;
+
+  /**
+   * Rotates to an angle.
+   * @param gsp Setpoint in degrees (e.g. 90).
+   */
+  public RotateToAngle(double gsp) {
+    requires(Robot.drivetrain);
+    gyroSetpoint = gsp;
+    pid.setTolerance(0.05 * gyroSetpoint);
+    commandStartTime = Timer.getFPGATimestamp();
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Robot.drivetrain.calibrate();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID);
-    double output = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID);
-    double foo = intake - output;
-    Robot.mail.turn(foo);
+    Robot.drivetrain.drive(0, pid.calculate(Robot.drivetrain.gyro.getAngle(), gyroSetpoint));
   }
 
   // Make this return true when this Command no longer needs to run execute()
+  // Robot sometimes doesn't hit setpoint 100%, call stop based off timer
   @Override
   protected boolean isFinished() {
-    return false;
+    if (Timer.getFPGATimestamp() > commandStartTime + 2) {
+      return true;
+    } else {
+      return pid.atSetpoint();
+    }
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-    Robot.mail.turn(0);
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
