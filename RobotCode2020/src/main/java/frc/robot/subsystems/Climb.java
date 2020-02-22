@@ -18,11 +18,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  // TalonSRX climbMotor = new TalonSRX(RobotMap.MOTOR_CLIMB_ID);
+  TalonSRX climbMotor = new TalonSRX(RobotMap.MOTOR_CLIMB_ID);
 
   // Wrapper class
   public void turn(double voltagePercent) {
-    // climbMotor.set(ControlMode.PercentOutput, voltagePercent);
+    climbMotor.set(ControlMode.PercentOutput, voltagePercent);
   }
 
   @Override
