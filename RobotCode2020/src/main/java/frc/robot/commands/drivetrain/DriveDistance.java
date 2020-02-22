@@ -15,7 +15,8 @@ public class DriveDistance extends Command {
   private double P = 0.04;
   private double I = 0.0;
   private double D = 0.0055;
-  private PIDController pid = new PIDController(P, I, D);
+  private PIDController pidDriveController = new PIDController(P, I, D);
+  private PIDController pidTurnController = new PIDController(P,I,D);
   private int ticks;
   
   /**
@@ -26,7 +27,9 @@ public class DriveDistance extends Command {
     requires(Robot.drivetrain);
     // calculate # of ticks based off distance
     ticks = (int)(distance / 6 * Math.PI * 360);
-    pid.setTolerance(0.05 * ticks);
+    pidDriveController.setTolerance(0.05 * ticks);
+    // idk what to set this one to lmao
+    pidTurnController.setTolerance(0.05);
   }
 
   // Called just before this Command runs the first time
@@ -34,18 +37,19 @@ public class DriveDistance extends Command {
   protected void initialize() {
   }
 
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double forwardsSpeed = pid.calculate(Robot.drivetrain.getPosition(),ticks);
-    double turnSpeed = pid.calculate(Robot.drivetrain.gyro.getAngle(), 0);
+    double forwardsSpeed = pidDriveController.calculate(Robot.drivetrain.getPosition(),ticks);
+    double turnSpeed = pidTurnController.calculate(Robot.drivetrain.gyro.getAngle(), 0);
     Robot.drivetrain.drive(forwardsSpeed,turnSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return pid.atSetpoint();
+    return pidDriveController.atSetpoint();
   }
 
   // Called once after isFinished returns true
