@@ -16,9 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.robot.commands.MailboxSet;
 
-/** 
- * Intake of the robot
- */
+/** Intake of the robot */
 public class Mailbox extends Subsystem {
   VictorSPX mailboxMotor = new VictorSPX(RobotMap.MOTOR_MAILBOX_ID);
 

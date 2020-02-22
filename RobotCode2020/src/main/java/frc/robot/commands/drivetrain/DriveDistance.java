@@ -16,17 +16,18 @@ public class DriveDistance extends Command {
   private double I = 0.0;
   private double D = 0.0055;
   private PIDController pidDriveController = new PIDController(P, I, D);
-  private PIDController pidTurnController = new PIDController(P,I,D);
+  private PIDController pidTurnController = new PIDController(P, I, D);
   private int ticks;
-  
+
   /**
    * Drives robot a set distance w/ PID loop to keep it straight
+   *
    * @param distance distance to travel in ft
    */
   public DriveDistance(double distance) {
     requires(Robot.drivetrain);
     // calculate # of ticks based off distance
-    ticks = (int)(distance / 6 * Math.PI * 360);
+    ticks = (int) (distance / 6 * Math.PI * 360);
     pidDriveController.setTolerance(0.05 * ticks);
     // idk what to set this one to lmao
     pidTurnController.setTolerance(0.05);
@@ -34,16 +35,14 @@ public class DriveDistance extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-  }
-
+  protected void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double forwardsSpeed = pidDriveController.calculate(Robot.drivetrain.getPosition(),ticks);
+    double forwardsSpeed = pidDriveController.calculate(Robot.drivetrain.getPosition(), ticks);
     double turnSpeed = pidTurnController.calculate(Robot.drivetrain.gyro.getAngle(), 0);
-    Robot.drivetrain.drive(forwardsSpeed,turnSpeed);
+    Robot.drivetrain.drive(forwardsSpeed, turnSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -55,12 +54,11 @@ public class DriveDistance extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.drive(0,0);
+    Robot.drivetrain.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-  }
+  protected void interrupted() {}
 }

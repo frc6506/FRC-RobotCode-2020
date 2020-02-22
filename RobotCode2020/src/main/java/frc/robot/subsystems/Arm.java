@@ -16,9 +16,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 
 import frc.robot.commands.ArmSet;
 
-/** 
- * Arm lifting the intake
- */
+/** Arm lifting the intake */
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.

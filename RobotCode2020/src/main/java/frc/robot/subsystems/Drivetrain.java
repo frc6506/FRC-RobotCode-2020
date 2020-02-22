@@ -30,12 +30,17 @@ import frc.robot.commands.drivetrain.Drive;
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // motor stuff
-  private CANSparkMax leftMotorFront = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
-  private CANSparkMax leftMotorBack = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
-  private CANSparkMax rightMotorFront = new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
-  private CANSparkMax rightMotorBack = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
+  private CANSparkMax leftMotorFront =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
+  private CANSparkMax leftMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
+  private CANSparkMax rightMotorFront =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
+  private CANSparkMax rightMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
   private SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMotorFront, leftMotorBack);
-  private SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMotorFront, rightMotorBack);
+  private SpeedControllerGroup rightMotors =
+      new SpeedControllerGroup(rightMotorFront, rightMotorBack);
 
   // drivetrain
   private DifferentialDrive dualDrive = new DifferentialDrive(leftMotors, rightMotors);
@@ -47,9 +52,7 @@ public class Drivetrain extends Subsystem {
   // gyro
   public AHRS gyro;
 
-  /**
-   * Constructor; just initializes gyro
-   */
+  /** Constructor; just initializes gyro */
   public Drivetrain() {
     try {
       gyro = new AHRS(SPI.Port.kMXP);
@@ -58,29 +61,24 @@ public class Drivetrain extends Subsystem {
     }
   }
 
-  /**
-   * For outputting values to SmartDashboard or odometry
-   */
+  /** For outputting values to SmartDashboard or odometry */
   public void periodic() {
     SmartDashboard.putNumber("gyro", gyro.getAngle());
   }
 
-  /**
-   * Manual calibration of gyro
-   */
+  /** Manual calibration of gyro */
   public void calibrate() {
     gyro.zeroYaw();
   }
 
-  /**
-   * Return average position between the encoders
-   */
+  /** Return average position between the encoders */
   public double getPosition() {
     return (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
   }
 
   /**
    * Wrapper for DifferentialDrive.arcadeDrive();
+   *
    * @param speed [-1,1] speed forwards
    * @param rotation [-1,1] rotation, negative is left
    */
@@ -90,6 +88,7 @@ public class Drivetrain extends Subsystem {
 
   /**
    * Wrapper for DifferentialDrive.tankDrive();
+   *
    * @param leftSpeed [-1,1] left wheel speed
    * @param rightSpeed [-1,1] right wheel speed
    */

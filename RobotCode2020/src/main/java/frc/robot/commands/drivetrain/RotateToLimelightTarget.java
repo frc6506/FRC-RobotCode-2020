@@ -13,9 +13,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.Robot;
 import frc.robot.utils.Limelight;
 
-/**
- * Rotates to a limelight target.
- */
+/** Rotates to a limelight target. */
 public class RotateToLimelightTarget extends Command {
   private double P = 0.04;
   private double I = 0.0;
@@ -54,12 +52,10 @@ public class RotateToLimelightTarget extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-  }
+  protected void interrupted() {}
 }

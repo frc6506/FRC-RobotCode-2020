@@ -22,6 +22,7 @@ public class RotateToAngle extends Command {
 
   /**
    * Rotates to an angle.
+   *
    * @param gsp Setpoint in degrees (e.g. 90).
    */
   public RotateToAngle(double gsp) {

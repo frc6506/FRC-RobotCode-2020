@@ -11,9 +11,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Rotates the arm based off joystick input.
- */
+/** Rotates the arm based off joystick input. */
 public class ArmSet extends Command {
   public ArmSet() {
     requires(Robot.armMotor);

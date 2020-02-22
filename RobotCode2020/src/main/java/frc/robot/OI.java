@@ -21,9 +21,7 @@ public class OI {
   public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
   public Button leftBumperButton = new JoystickButton(controller, RobotMap.LB_BUTTON_ID);
 
-  public OI() {
-    
-  }
+  public OI() {}
 
   public double getAxis(int axis) {
     return controller.getRawAxis(axis);
