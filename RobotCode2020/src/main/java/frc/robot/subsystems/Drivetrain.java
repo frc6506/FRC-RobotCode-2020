@@ -83,7 +83,7 @@ public class Drivetrain extends Subsystem {
    * @param rotation [-1,1] rotation, negative is left
    */
   public void drive(double speed, double rotation) {
-    dualDrive.arcadeDrive(speed, rotation);
+    dualDrive.arcadeDrive(Math.pow(speed, 3), rotation, true);
   }
 
   /**
