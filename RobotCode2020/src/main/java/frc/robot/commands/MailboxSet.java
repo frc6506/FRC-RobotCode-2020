@@ -27,20 +27,16 @@ public class MailboxSet extends Command {
   protected void execute() {
     boolean intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID) >= 0.75;
     boolean outake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID) >= 0.75;
-    if(intake && outake) {
+    if (intake && outake) {
       System.out.println("both intake and outtake pressed!");
       Robot.mail.turn(0);
-    }
-    else if(intake) {
+    } else if (intake) {
       Robot.mail.turn(1);
-    }
-    else if(outake) {
+    } else if (outake) {
       Robot.mail.turn(-1);
-    }
-    else {
+    } else {
       Robot.mail.turn(0);
     }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
