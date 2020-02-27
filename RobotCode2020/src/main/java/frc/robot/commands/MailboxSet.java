@@ -25,10 +25,22 @@ public class MailboxSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID);
-    double output = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID);
-    double foo = intake - output;
-    Robot.mail.turn(foo);
+    boolean intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID) >= 0.75;
+    boolean outake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID) >= 0.75;
+    if(intake && outake) {
+      System.out.println("both intake and outtake pressed!");
+      Robot.mail.turn(0);
+    }
+    else if(intake) {
+      Robot.mail.turn(1);
+    }
+    else if(outake) {
+      Robot.mail.turn(-1);
+    }
+    else {
+      Robot.mail.turn(0);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
