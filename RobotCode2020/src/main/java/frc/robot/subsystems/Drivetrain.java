@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
     average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
     return average;
   }
-  
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
