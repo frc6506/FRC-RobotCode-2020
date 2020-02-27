@@ -43,11 +43,17 @@ public class RobotMap {
   public static final int JOYSTICK_ARM_CONTROL_ID = 5;
   public static final int JOYSTICK_INTAKE_ID = 2;
   public static final int JOYSTICK_OUTPUT_ID = 3;
-  public static final int A_BUTTON_ID = 0;
-  public static final int B_BUTTON_ID = 0;
+  public static final int A_BUTTON_ID = 1; // 1-based
+  public static final int B_BUTTON_ID = 2;
+
   // backwards button
   public static final int LB_BUTTON_ID = 4;
   // public static final int JOYSTICK_LEFT_TRIGGER_ID = 0;
+
+  public static final int JOYSTICK_ARM_SET_ID = 5;
+
+  public static final int JOYSTICK_MALIBOX_IN_ID = 2;
+  public static final int JOYSTICK_MALIBOX_OUT_ID = 3;
 
   // public static final int JOYSTICK_MAILBOX_ROLLERS_ID = 0;
 }

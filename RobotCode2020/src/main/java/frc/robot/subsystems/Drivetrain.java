@@ -11,14 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import frc.robot.commands.Drive;
 
-/** Drivetrain class w/ limelight vision tracking */
+/** Add your docs here. */
 public class Drivetrain extends Subsystem {
   // Drivetrain
   CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
@@ -50,7 +48,7 @@ public class Drivetrain extends Subsystem {
     average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
     return average;
   }
-
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
