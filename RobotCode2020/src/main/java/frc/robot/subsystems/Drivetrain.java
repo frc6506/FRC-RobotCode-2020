@@ -16,13 +16,10 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
-import edu.wpi.first.networktables.NetworkTable;  // limelight stuff
-import edu.wpi.first.networktables.NetworkTableInstance;  // limelight stuff
-
+import edu.wpi.first.networktables.NetworkTable; // limelight stuff
+import edu.wpi.first.networktables.NetworkTableInstance; // limelight stuff
 
 import frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj.SPI;
@@ -105,14 +102,11 @@ public class Drivetrain extends Subsystem {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
   }
 
-
-
   // getters
   public double getPosition() {
     double average = (lEncoder.getPosition() + rEncoder.getPosition() * -1) / 2.0;
     return average;
   }
-
 
   @Override
   public void initDefaultCommand() {
