@@ -21,11 +21,11 @@ public class Mailbox extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  // TalonSRX mailboxMotor = new TalonSRX(RobotMap.MOTOR_MAILBOX_ID);
+  TalonSRX mailboxMotor = new TalonSRX(RobotMap.MOTOR_MAILBOX_ID);
 
   // Wrapper method
   public void turn(double voltagePercent) {
-    // mailboxMotor.set(ControlMode.PercentOutput, voltagePercent);
+    mailboxMotor.set(ControlMode.PercentOutput, voltagePercent);
   }
 
   @Override

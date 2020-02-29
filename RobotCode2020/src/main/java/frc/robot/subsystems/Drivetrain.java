@@ -23,8 +23,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 // limelight stuff
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+//import edu.wpi.first.networktables.NetworkTableEntry;
 
 import frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -93,7 +93,7 @@ public class Drivetrain extends Subsystem {
 
   // getters
   public double getPosition() {
-    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
+    double average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
     return average;
   }
 
