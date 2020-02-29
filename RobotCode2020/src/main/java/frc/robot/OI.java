@@ -10,27 +10,39 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
  * and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
+  public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
+  public Button abutton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
+  public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
+  public Button leftBumperButton = new JoystickButton(controller, RobotMap.LB_BUTTON_ID);
+
+  public OI() {}
+
+  public double getAxis(int axis) {
+    return controller.getRawAxis(axis);
+  }
+}
+
+// documentation that was cluttering OI, but is useful for future reference
+
+//// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
-  public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
-  public Button abutton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
-  public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
+//// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
 
@@ -45,8 +57,3 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
-
-  public double getAxis(int axis) {
-    return controller.getRawAxis(axis);
-  }
-}

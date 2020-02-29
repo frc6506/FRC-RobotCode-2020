@@ -5,41 +5,54 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
-import frc.robot.Robot;
-import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-// import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import frc.robot.Robot;
+import frc.robot.utils.Limelight;
 
-/** Rotates the arm based off joystick input. */
-public class ArmSet extends Command {
-  public ArmSet() {
-    requires(Robot.armMotor);
+/** Rotates to a limelight target. */
+public class RotateToLimelightTarget extends Command {
+  private double P = 0.04;
+  private double I = 0.0;
+  private double D = 0.0055;
+  private PIDController pid = new PIDController(P, I, D);
+  private double commandStartTime;
+
+  public RotateToLimelightTarget() {
+    requires(Robot.drivetrain);
+    pid.setTolerance(0.05);
+    commandStartTime = Timer.getFPGATimestamp();
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Robot.drivetrain.calibrate();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1);
-    Robot.armMotor.turn(Robot.m_oi.getAxis(RobotMap.JOYSTICK_ARM_SET_ID) * -1 * .5);
+    Robot.drivetrain.drive(0, pid.calculate(Limelight.returnHorizontalOffset(), 0));
   }
 
   // Make this return true when this Command no longer needs to run execute()
+  // Robot sometimes doesn't hit setpoint 100%, call stop based off timer
   @Override
   protected boolean isFinished() {
-    return true;
+    if (Timer.getFPGATimestamp() > commandStartTime + 2) {
+      return true;
+    } else {
+      return pid.atSetpoint();
+    }
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-    Robot.armMotor.turn(0);
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
