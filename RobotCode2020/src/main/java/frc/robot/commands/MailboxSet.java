@@ -25,16 +25,16 @@ public class MailboxSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // double turnValue = 0;
-    System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_IN_ID));
-    System.out.println(Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_OUT_ID));
-    if (Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_IN_ID) > 0.5) {
-      Robot.mail.turn(1.0);
-    } else if (Robot.m_oi.getAxis(RobotMap.JOYSTICK_MALIBOX_OUT_ID) > 0.5) {
-      Robot.mail.turn(-1.0);
+    boolean intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID) >= 0.75;
+    boolean outake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID) >= 0.75;
+    if (intake && outake) {
+      System.out.println("both intake and outtake pressed!");
+      Robot.mail.turn(0);
+    } else if (intake) {
+      Robot.mail.turn(1);
+    } else if (outake) {
+      Robot.mail.turn(-1);
     } else {
-      /*System.out.println(
-      "DEBUG/WARNING: Java\\frc\\robot\\MailboxsSet.java: MailboxSet was called but no input values tripped.");*/
       Robot.mail.turn(0);
     }
   }

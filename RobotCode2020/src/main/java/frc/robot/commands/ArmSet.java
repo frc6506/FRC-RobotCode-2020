@@ -8,8 +8,9 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Command;
+// import frc.robot.RobotMap;
 
 public class ArmSet extends Command {
   public ArmSet() {
@@ -37,7 +38,9 @@ public class ArmSet extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.armMotor.turn(0);
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -18,12 +19,20 @@ import frc.robot.commands.Drive;
 
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  CANSparkMax leftMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_ID, MotorType.kBrushless);
-  CANSparkMax rightMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_ID, MotorType.kBrushless);
+  // Drivetrain
+  CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
+  CANSparkMax rightBackMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
+  CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
+  CANSparkMax rightFrontMotor =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
+  DifferentialDrive dualDrive = new DifferentialDrive(leftBackMotor, rightBackMotor);
 
-  DifferentialDrive dualDrive = new DifferentialDrive(leftMotor, rightMotor);
+  // encoders
+  CANEncoder lEncoder = leftBackMotor.getEncoder();
+  CANEncoder rEncoder = rightBackMotor.getEncoder();
+
+  // average
+  double average = 0.0;
 
   // Wrapper classes
   public void drive(double speed, double rotation) {
@@ -32,6 +41,13 @@ public class Drivetrain extends Subsystem {
 
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  // TO-DO: Consider moving non-driving stuff to commands
+  // getters
+  public double getPosition() {
+    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
+    return average;
   }
 
   @Override
