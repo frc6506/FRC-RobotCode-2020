@@ -13,16 +13,6 @@ package frc.robot;
  * reduces the number of magic numbers floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
-
   // arm motor ID; placeholder for now
   public static final int CONTROLLER_PORT_ID = 0;
 
@@ -57,3 +47,15 @@ public class RobotMap {
 
   // public static final int JOYSTICK_MAILBOX_ROLLERS_ID = 0;
 }
+
+// extra documentation
+
+// For example to map the left and right motors, you could define the
+  // following variables to use with your drivetrain subsystem.
+  // public static int leftMotor = 1;
+  // public static int rightMotor = 2;
+
+  // If you are using multiple modules, make sure to define both the port
+  // number and the module. For example you with a rangefinder:
+  // public static int rangefinderPort = 1;
+  // public static int rangefinderModule = 1;

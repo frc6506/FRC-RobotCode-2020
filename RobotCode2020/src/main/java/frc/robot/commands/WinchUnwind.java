@@ -12,8 +12,6 @@ import frc.robot.Robot;
 
 public class WinchUnwind extends Command {
   public WinchUnwind() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.climbDevice);
   }
 

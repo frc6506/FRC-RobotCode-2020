@@ -10,44 +10,83 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-import frc.robot.commands.Drive;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import frc.robot.commands.drivetrain.Drive;
 
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
-  // Drivetrain
-  CANSparkMax leftBackMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
-  CANSparkMax rightBackMotor = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
-  CANSparkMax leftFrontMotor = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
-  CANSparkMax rightFrontMotor =
+  // motor stuff
+  private CANSparkMax leftMotorFront =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
+  private CANSparkMax leftMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
+  private CANSparkMax rightMotorFront =
       new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
-  DifferentialDrive dualDrive = new DifferentialDrive(leftBackMotor, rightBackMotor);
+  private CANSparkMax rightMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
+  private SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMotorFront, leftMotorBack);
+  private SpeedControllerGroup rightMotors =
+      new SpeedControllerGroup(rightMotorFront, rightMotorBack);
+
+  // drivetrain
+  private DifferentialDrive dualDrive = new DifferentialDrive(leftMotors, rightMotors);
 
   // encoders
-  CANEncoder lEncoder = leftBackMotor.getEncoder();
-  CANEncoder rEncoder = rightBackMotor.getEncoder();
+  private CANEncoder lEncoder = new CANEncoder(leftMotorBack);
+  private CANEncoder rEncoder = new CANEncoder(rightMotorBack);
 
-  // average
-  double average = 0.0;
+  // gyro
+  public AHRS gyro;
 
-  // Wrapper classes
-  public void drive(double speed, double rotation) {
-    dualDrive.arcadeDrive(speed, rotation);
+  /** Constructor; just initializes gyro */
+  public Drivetrain() {
+    try {
+      gyro = new AHRS(SPI.Port.kMXP);
+    } catch (RuntimeException ex) {
+      DriverStation.reportError("Error instantiating navX MXP", true);
+    }
   }
 
+  /** For outputting values to SmartDashboard or odometry */
+  public void periodic() {
+    SmartDashboard.putNumber("gyro", gyro.getAngle());
+  }
+
+  /** Manual calibration of gyro */
+  public void calibrate() {
+    gyro.zeroYaw();
+  }
+
+  /** Return average position between the encoders */
+  public double getPosition() {
+    return (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
+  }
+
+  /**
+   * Wrapper for DifferentialDrive.arcadeDrive();
+   *
+   * @param speed [-1,1] speed forwards
+   * @param rotation [-1,1] rotation, negative is left
+   */
+  public void drive(double speed, double rotation) {
+    dualDrive.arcadeDrive(Math.pow(speed, 3), rotation, true);
+  }
+
+  /**
+   * Wrapper for DifferentialDrive.tankDrive();
+   *
+   * @param leftSpeed [-1,1] left wheel speed
+   * @param rightSpeed [-1,1] right wheel speed
+   */
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
-  }
-
-  // TO-DO: Consider moving non-driving stuff to commands
-  // getters
-  public double getPosition() {
-    average = (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
-    return average;
   }
 
   @Override
