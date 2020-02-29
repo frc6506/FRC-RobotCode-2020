@@ -13,12 +13,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-
-import frc.robot.subsystems.Mailbox;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Mailbox;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to

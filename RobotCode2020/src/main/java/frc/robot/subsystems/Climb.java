@@ -7,12 +7,10 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-import frc.robot.RobotMap;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /** Add your docs here. */
 public class Climb extends Subsystem {

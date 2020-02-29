@@ -7,13 +7,11 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import frc.robot.RobotMap;
 import frc.robot.commands.Drive;
 
 /** Add your docs here. */
