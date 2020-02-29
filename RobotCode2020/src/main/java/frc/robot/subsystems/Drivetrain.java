@@ -16,12 +16,20 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import frc.robot.commands.drivetrain.Drive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.DriverStation;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.drivetrain.Drive;
+// import frc.robot.commands.drivetrain.Drive;
+
+// import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+// import edu.wpi.first.networktables.NetworkTable; // limelight stuff
+// import edu.wpi.first.networktables.NetworkTableInstance; // limelight stuff
+// import edu.wpi.first.networktables.NetworkTableEntry;
 
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
@@ -42,6 +50,7 @@ public class Drivetrain extends Subsystem {
   private DifferentialDrive dualDrive = new DifferentialDrive(leftMotors, rightMotors);
 
   // encoders
+
   private CANEncoder lEncoder = new CANEncoder(leftMotorBack);
   private CANEncoder rEncoder = new CANEncoder(rightMotorBack);
 
@@ -67,11 +76,6 @@ public class Drivetrain extends Subsystem {
     gyro.zeroYaw();
   }
 
-  /** Return average position between the encoders */
-  public double getPosition() {
-    return (lEncoder.getPosition() + rEncoder.getPosition()) / 2.0;
-  }
-
   /**
    * Wrapper for DifferentialDrive.arcadeDrive();
    *
@@ -90,6 +94,13 @@ public class Drivetrain extends Subsystem {
    */
   public void oldDrive(double leftSpeed, double rightSpeed) {
     dualDrive.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  // getters
+  /** Return average position between the encoders */
+  public double getPosition() {
+    double average = (lEncoder.getPosition() + rEncoder.getPosition() * -1) / 2.0;
+    return average;
   }
 
   @Override

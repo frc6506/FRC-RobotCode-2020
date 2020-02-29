@@ -8,13 +8,15 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-// import edu.wpi.first.wpilibj.controller.PIDController;
-
 import frc.robot.commands.ArmSet;
+// import frc.robot.RobotMap;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /** Arm lifting the intake */
 public class Arm extends Subsystem {
