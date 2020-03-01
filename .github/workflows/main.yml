@@ -1,7 +1,6 @@
 name: Build FRC Java with Gradle 2
 
-on:
-  - push
+on: [push]
 
 jobs:
   build:
