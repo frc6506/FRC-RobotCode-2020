@@ -11,18 +11,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Spark;
 
 /** Add your docs here. */
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  // TalonSRX climbMotor = new TalonSRX(RobotMap.MOTOR_CLIMB_ID);
+  Spark climbExtendMotor = new Spark(RobotMap.MOTOR_CLIMB_EXTENDER_ID);
+  Spark winchMotor = new Spark(RobotMap.MOTOR_CLIMB_WINCH_ID);
 
   // Wrapper class
-  public void turn(double voltagePercent) {
-    // climbMotor.set(ControlMode.PercentOutput, voltagePercent);
+  public void extendClimb(double voltage) {
+    climbExtendMotor.set(voltage);
+  }
+
+  public void turnWinch(double voltage) {
+    winchMotor.set(voltage);
   }
 
   @Override

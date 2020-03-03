@@ -5,30 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drivetrain;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class Drive extends Command {
-  public Drive() {
+public class ExtendClimb extends Command {
+  public ExtendClimb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drivetrain);
+    requires(Robot.climbDevice);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = -1 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID);
-    double rotation = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID);
-
-    Robot.drivetrain.drive(Math.pow(speed, 3.0), Math.pow(rotation, 3.0));
+    Robot.climbDevice.extendClimb(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,10 +36,12 @@ public class Drive extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+  }
 }

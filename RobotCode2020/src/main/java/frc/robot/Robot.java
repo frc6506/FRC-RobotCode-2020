@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.Mailbox;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.commands.autonomous.Auton;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Climb;
 
@@ -42,6 +44,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    m_chooser.setDefaultOption("Default Auto", new Auton());
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -52,7 +57,9 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    drivetrain.periodic();
+  }
 
   /**
    * This function is called once each time the robot enters Disabled mode. You can use it to reset
@@ -77,7 +84,21 @@ public class Robot extends TimedRobot {
    * additional strings & commands.
    */
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    m_autonomousCommand = m_chooser.getSelected();
+
+    /*
+     * String autoSelected = SmartDashboard.getString("Auto Selector",
+     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+     * = new MyAutoCommand(); break; case "Default Auto": default:
+     * autonomousCommand = new ExampleCommand(); break; }
+     */
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.start();
+    }
+  }
 
   /** This function is called periodically during autonomous. */
   @Override

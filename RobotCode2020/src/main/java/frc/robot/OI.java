@@ -10,6 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.WinchUnwind;
+import frc.robot.commands.WinchWind;
+import frc.robot.commands.ExtendClimb;
+import frc.robot.commands.RetractClimb;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -17,11 +22,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
   public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
-  public Button abutton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
-  public Button bbutton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
-  public Button leftBumperButton = new JoystickButton(controller, RobotMap.LB_BUTTON_ID);
+  public Button aButton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
+  public Button bButton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
+  public Button leftBumperButton = new JoystickButton(controller, RobotMap.LEFT_BUMPER_BUTTON_ID);
+  public Button rightBumperButton = new JoystickButton(controller, RobotMap.RIGHT_BUMPER_BUTTON_ID);
 
-  public OI() {}
+  public OI() {
+    aButton.whileHeld(new WinchWind());
+    bButton.whileHeld(new WinchUnwind());
+    leftBumperButton.whileHeld(new ExtendClimb());
+    rightBumperButton.whileHeld(new RetractClimb());
+
+  }
 
   public double getAxis(int axis) {
     return controller.getRawAxis(axis);

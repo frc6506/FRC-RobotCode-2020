@@ -10,10 +10,11 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class RotateToAngle extends Command {
-  private double P = 0.04;
+  private double P = 0.08;
   private double I = 0.0;
   private double D = 0.0055;
   private PIDController pid = new PIDController(P, I, D);
@@ -28,13 +29,15 @@ public class RotateToAngle extends Command {
   public RotateToAngle(double gsp) {
     requires(Robot.drivetrain);
     gyroSetpoint = gsp;
-    pid.setTolerance(0.05 * gyroSetpoint);
+    pid.setTolerance(0.1);
     commandStartTime = Timer.getFPGATimestamp();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putNumber("gyro setpoint", gyroSetpoint);
+    SmartDashboard.putString("Command", "RotateToAngle");
     Robot.drivetrain.calibrate();
   }
 
@@ -48,11 +51,7 @@ public class RotateToAngle extends Command {
   // Robot sometimes doesn't hit setpoint 100%, call stop based off timer
   @Override
   protected boolean isFinished() {
-    if (Timer.getFPGATimestamp() > commandStartTime + 2) {
-      return true;
-    } else {
-      return pid.atSetpoint();
-    }
+    return pid.atSetpoint();
   }
 
   // Called once after isFinished returns true

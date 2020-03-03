@@ -25,7 +25,9 @@ public class RobotMap {
   public static final int MOTOR_LEFT_FRONT_ID = 13;
   public static final int MOTOR_RIGHT_FRONT_ID = 11;
 
-  public static final int MOTOR_CLIMB_ID = 0;
+  public static final int MOTOR_CLIMB_EXTENDER_ID = 0;
+  public static final int MOTOR_CLIMB_WINCH_ID = 0;
+  
 
   // left joystick
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
@@ -33,10 +35,17 @@ public class RobotMap {
   public static final int JOYSTICK_ARM_CONTROL_ID = 5;
   public static final int JOYSTICK_INTAKE_ID = 2;
   public static final int JOYSTICK_OUTPUT_ID = 3;
-  public static final int A_BUTTON_ID = 0;
-  public static final int B_BUTTON_ID = 0;
+  public static final int A_BUTTON_ID = 1;
+  public static final int B_BUTTON_ID = 2;
+  public static final int LEFT_BUMPER_BUTTON_ID = 0;
+  public static final int RIGHT_BUMPER_BUTTON_ID = 0;
+
   // backwards button
   public static final int LB_BUTTON_ID = 4;
+
+  // arm setpoints
+  public static final double ARM_POS_MIN = 0;
+  public static final double ARM_POS_MAX = 60;
 }
 
 // extra documentation

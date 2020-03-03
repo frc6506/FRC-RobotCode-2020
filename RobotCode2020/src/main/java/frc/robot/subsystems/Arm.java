@@ -11,17 +11,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.controller.PIDController;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArmSet;
 
 /** Arm lifting the intake */
 public class Arm extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
   TalonSRX armMotor = new TalonSRX(RobotMap.MOTOR_ARM_ID);
-  PIDController pidController = new PIDController(0.0002, 0.0000001, 0);
+
+  // configure arm
+  // I think this works but I'm scared to test it
+  public Arm() {
+    // set mag encoder
+    armMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+    // config PID parameters
+    armMotor.config_kF(0, 0, 10);
+		armMotor.config_kP(0, 0, 10);
+		armMotor.config_kI(0, 0, 10);
+		armMotor.config_kD(0, 0, 10);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -30,7 +40,15 @@ public class Arm extends Subsystem {
     setDefaultCommand(new ArmSet());
   }
 
+  public void periodic() {
+    SmartDashboard.putNumber("arm pos", 0);
+  }
+
   public void turn(double value) {
     armMotor.set(ControlMode.PercentOutput, value);
+  }
+
+  public void setSetpoint(double setpoint) {
+    armMotor.set(ControlMode.Position, setpoint);
   }
 }

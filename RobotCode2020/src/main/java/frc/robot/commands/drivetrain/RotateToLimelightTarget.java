@@ -23,7 +23,7 @@ public class RotateToLimelightTarget extends Command {
 
   public RotateToLimelightTarget() {
     requires(Robot.drivetrain);
-    pid.setTolerance(0.05);
+    pid.setTolerance(0.1);
     commandStartTime = Timer.getFPGATimestamp();
   }
 
@@ -43,11 +43,7 @@ public class RotateToLimelightTarget extends Command {
   // Robot sometimes doesn't hit setpoint 100%, call stop based off timer
   @Override
   protected boolean isFinished() {
-    if (Timer.getFPGATimestamp() > commandStartTime + 2) {
-      return true;
-    } else {
-      return pid.atSetpoint();
-    }
+    return pid.atSetpoint();
   }
 
   // Called once after isFinished returns true

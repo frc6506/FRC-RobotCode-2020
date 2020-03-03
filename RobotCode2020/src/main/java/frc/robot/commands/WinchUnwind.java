@@ -22,11 +22,7 @@ public class WinchUnwind extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_oi.bbutton.get()) {
-      Robot.climbDevice.turn(-1);
-    } else {
-      Robot.climbDevice.turn(0);
-    }
+    Robot.climbDevice.turnWinch(-1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
