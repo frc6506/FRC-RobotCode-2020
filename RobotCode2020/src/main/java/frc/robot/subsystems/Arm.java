@@ -45,7 +45,6 @@ public class Arm extends Subsystem {
   }
 
   public void turn(double value) {
-    armMotor.set(ControlMode.PercentOutput, value);
     armMotor.set(ControlMode.PercentOutput, value); 
   } 
 
