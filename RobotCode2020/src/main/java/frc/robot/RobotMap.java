@@ -13,32 +13,38 @@ package frc.robot;
  * reduces the number of magic numbers floating around.
  */
 public class RobotMap {
-  // arm motor ID; placeholder for now
+  // controller port
   public static final int CONTROLLER_PORT_ID = 0;
 
+  // arm ID
   public static final int MOTOR_ARM_ID = 20;
 
+  // intake ID
   public static final int MOTOR_MAILBOX_ID = 31;
-
+  
+  // drivetrain motors
   public static final int MOTOR_LEFT_BACK_ID = 12;
   public static final int MOTOR_RIGHT_BACK_ID = 10;
   public static final int MOTOR_LEFT_FRONT_ID = 13;
   public static final int MOTOR_RIGHT_FRONT_ID = 11;
 
   public static final int MOTOR_CLIMB_EXTENDER_ID = 0;
-  public static final int MOTOR_CLIMB_WINCH_ID = 0;
+  public static final int MOTOR_CLIMB_WINCH_ID = 40;
   
-
-  // left joystick
+  // left joystick (horizontal)
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
+  // left joystick (horizontal)
   public static final int JOYSTICK_DRIVE_ROTATION_ID = 0;
+  // right joystick (vertical)
   public static final int JOYSTICK_ARM_CONTROL_ID = 5;
+  // triggers (L,R accordingly)
   public static final int JOYSTICK_INTAKE_ID = 2;
   public static final int JOYSTICK_OUTPUT_ID = 3;
+  // buttons
   public static final int A_BUTTON_ID = 1;
   public static final int B_BUTTON_ID = 2;
-  public static final int LEFT_BUMPER_BUTTON_ID = 0;
-  public static final int RIGHT_BUMPER_BUTTON_ID = 0;
+  public static final int LEFT_BUMPER_BUTTON_ID = 3;
+  public static final int RIGHT_BUMPER_BUTTON_ID = 4;
 
   // backwards button
   public static final int LB_BUTTON_ID = 4;
@@ -46,6 +52,11 @@ public class RobotMap {
   // arm setpoints
   public static final double ARM_POS_MIN = 0;
   public static final double ARM_POS_MAX = 60;
+
+  // arm positions
+  public static final double ARM_POS_LOWER = -1082.0;
+  // real position is 566.0, but because of hard stop lowered it down a tiny bit
+  public static final double ARM_POS_UPPER = 550.0;
 }
 
 // extra documentation

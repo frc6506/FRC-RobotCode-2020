@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
   // I think this works but I'm scared to test it
   public Arm() {
     // set mag encoder
-    armMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+    armMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
     // config PID parameters
     armMotor.config_kF(0, 0, 10);
 		armMotor.config_kP(0, 0, 10);
@@ -41,12 +41,13 @@ public class Arm extends Subsystem {
   }
 
   public void periodic() {
-    SmartDashboard.putNumber("arm pos", 0);
+    SmartDashboard.putNumber("arm pos", armMotor.getSelectedSensorPosition());
   }
 
   public void turn(double value) {
     armMotor.set(ControlMode.PercentOutput, value);
-  }
+    armMotor.set(ControlMode.PercentOutput, value); 
+  } 
 
   public void setSetpoint(double setpoint) {
     armMotor.set(ControlMode.Position, setpoint);

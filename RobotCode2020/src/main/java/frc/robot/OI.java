@@ -32,7 +32,6 @@ public class OI {
     bButton.whileHeld(new WinchUnwind());
     leftBumperButton.whileHeld(new ExtendClimb());
     rightBumperButton.whileHeld(new RetractClimb());
-
   }
 
   public double getAxis(int axis) {

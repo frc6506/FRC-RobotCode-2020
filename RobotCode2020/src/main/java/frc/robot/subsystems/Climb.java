@@ -9,16 +9,18 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import edu.wpi.first.wpilibj.Spark;
 import frc.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 /** Add your docs here. */
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   Spark climbExtendMotor = new Spark(RobotMap.MOTOR_CLIMB_EXTENDER_ID);
-  Spark winchMotor = new Spark(RobotMap.MOTOR_CLIMB_WINCH_ID);
+  VictorSPX winchMotor = new VictorSPX(RobotMap.MOTOR_CLIMB_WINCH_ID);
 
   // Wrapper class
   public void extendClimb(double voltage) {
@@ -26,7 +28,7 @@ public class Climb extends Subsystem {
   }
 
   public void turnWinch(double voltage) {
-    winchMotor.set(voltage);
+   winchMotor.set(ControlMode.PercentOutput, voltage);
   }
 
   @Override
