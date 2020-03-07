@@ -5,15 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
-public class MailboxSet extends Command {
-  public MailboxSet() {
-    requires(Robot.mail);
+public class DriveDistance extends Command {
+  private double P = 0.04;
+  private double I = 0.0;
+  private double D = 0.0055;
+  private PIDController pidDriveController = new PIDController(P, I, D);
+  private PIDController pidTurnController = new PIDController(P, I, D);
+  private int ticks;
+
+  /**
+   * Drives robot a set distance w/ PID loop to keep it straight
+   *
+   * @param distance distance to travel in ft
+   */
+  public DriveDistance(double distance) {
+    requires(Robot.drivetrain);
+    // calculate # of ticks based off distance
+    ticks = (int) (distance / 6 * Math.PI * 360);
+    pidDriveController.setTolerance(0.05 * ticks);
+    // idk what to set this one to lmao
+    pidTurnController.setTolerance(0.05);
   }
 
   // Called just before this Command runs the first time
@@ -23,30 +40,21 @@ public class MailboxSet extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    boolean intake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_INTAKE_ID) >= 0.75;
-    boolean outake = Robot.m_oi.getAxis(RobotMap.JOYSTICK_OUTPUT_ID) >= 0.75;
-    if (intake && outake) {
-      System.out.println("both intake and outtake pressed!");
-      Robot.mail.turn(0);
-    } else if (intake) {
-      Robot.mail.turn(1);
-    } else if (outake) {
-      Robot.mail.turn(-1);
-    } else {
-      Robot.mail.turn(0);
-    }
+    double forwardsSpeed = pidDriveController.calculate(Robot.drivetrain.getPosition(), ticks);
+    double turnSpeed = pidTurnController.calculate(Robot.drivetrain.gyro.getAngle(), 0);
+    Robot.drivetrain.drive(forwardsSpeed, turnSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return pidDriveController.atSetpoint();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.mail.turn(0);
+    Robot.drivetrain.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
