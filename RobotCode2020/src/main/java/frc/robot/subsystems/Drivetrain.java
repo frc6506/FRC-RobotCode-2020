@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.drivetrain.Drive;
+import frc.robot.commands.drivetrainDrive;
 
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {

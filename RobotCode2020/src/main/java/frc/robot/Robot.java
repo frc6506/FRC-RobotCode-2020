@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static Arm armMotor = new Arm();
   public static Climb climbDevice = new Climb();
+  public static ColorSensor sensor = new ColorSensor();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

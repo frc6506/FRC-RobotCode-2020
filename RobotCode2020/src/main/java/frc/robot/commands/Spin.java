@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+/*import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -17,6 +17,7 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
+import frc.robot.OI;*/
 import edu.wpi.first.wpilibj.util.Color;
 
 public class Spin extends Command {
@@ -27,33 +28,51 @@ public class Spin extends Command {
   }
 
   public Color initialColor;
-  public Color testedColor;
-  public Color prevColor;
-  public int colorCount = 0;
+  public Color currentColor;
+  public Color previousColor;
+  public int halfSpins = 0;
+  public int fullSpins = 0;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    initialColor = Robot.sensor.getColor();
-    Robot.sensor.turn(0.5);
+    initialColor = Robot.sensor.getColorMatch();
+    previousColor = Robot.sensor.getColorMatch();
+    halfSpins = 0;
+    fullSpins = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    testedColor = Robot.sensor.getColor();
-    if (testedColor.equals(initialColor) && !(testedColor.equals(prevColor))) {
-      colorCount++;
+    // System.out.println("running Spin execute");
+
+    currentColor = Robot.sensor.getColorMatch();
+
+    // if sensor sees initial color and the wheel has moved, then the wheel has turned halfway
+
+    if (currentColor.equals(initialColor) && !(currentColor.equals(previousColor))) {
+      halfSpins++;
+      // update number of full spins
+      fullSpins = (int) (halfSpins / 2);
     }
-    prevColor = Robot.sensor.getColor();
+
+    previousColor = Robot.sensor.getColorMatch();
+    Robot.sensor.turn(0.25);
+
+    Robot.sensor.commandHalfSpins = halfSpins;
+    Robot.sensor.commandFullSpins = fullSpins;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (colorCount > 6) {
+    // stop spinning when done enough spins
+    if (fullSpins >= 3) {
+      Robot.sensor.turn(0);
       return true;
     }
+
     return false;
   }
 
@@ -66,5 +85,7 @@ public class Spin extends Command {
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    Robot.sensor.turn(0);
+  }
 }
