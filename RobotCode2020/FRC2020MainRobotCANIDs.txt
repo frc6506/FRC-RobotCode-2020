@@ -17,3 +17,6 @@ TalonSRX	CAN	20	LEFT-(RAISE/LOWER)	LEFT-(R/L)R- Talon SRX (Device ID 20)
 
 INTAKE:	CAN 30-39
 VictorSPX	CAN	31	RIGHT			IntakeRight [Victor SPX (Device ID 31)]
+
+Climb:  	CAN 	40-49
+VictorSPX 	CAN	40	Wench			Wench- Victor SPX (Device ID 40)

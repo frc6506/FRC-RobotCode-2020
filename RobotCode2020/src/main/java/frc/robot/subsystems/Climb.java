@@ -9,20 +9,20 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.RobotMap;
+// import frc.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX
 
 /** Add your docs here. */
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  TalonSRX climbMotor = new TalonSRX(RobotMap.MOTOR_CLIMB_ID);
+  // TalonSRX climbMotor = new TalonSRX(RobotMap.MOTOR_CLIMB_ID);
 
   // Wrapper class
   public void turn(double voltagePercent) {
-    climbMotor.set(ControlMode.PercentOutput, voltagePercent);
+    // climbMotor.set(ControlMode.PercentOutput, voltagePercent);
   }
 
   @Override
