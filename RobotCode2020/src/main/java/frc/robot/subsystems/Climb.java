@@ -28,7 +28,7 @@ public class Climb extends Subsystem {
   }
 
   public void turnWinch(double voltage) {
-   winchMotor.set(ControlMode.PercentOutput, voltage);
+    winchMotor.set(ControlMode.PercentOutput, voltage);
   }
 
   @Override

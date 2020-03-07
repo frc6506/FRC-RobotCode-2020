@@ -30,13 +30,18 @@ import frc.robot.commands.drivetrain.Drive;
 /** Drivetrain class w/ limelight vision tracking */
 public class Drivetrain extends Subsystem {
   // motor stuff
-  private CANSparkMax leftMotorFront = new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
-  private CANSparkMax leftMotorBack = new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
-  private CANSparkMax rightMotorFront = new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
-  private CANSparkMax rightMotorBack = new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
+  private CANSparkMax leftMotorFront =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_FRONT_ID, MotorType.kBrushless);
+  private CANSparkMax leftMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_LEFT_BACK_ID, MotorType.kBrushless);
+  private CANSparkMax rightMotorFront =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_FRONT_ID, MotorType.kBrushless);
+  private CANSparkMax rightMotorBack =
+      new CANSparkMax(RobotMap.MOTOR_RIGHT_BACK_ID, MotorType.kBrushless);
 
   private SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMotorFront, leftMotorBack);
-  private SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMotorFront, rightMotorBack);
+  private SpeedControllerGroup rightMotors =
+      new SpeedControllerGroup(rightMotorFront, rightMotorBack);
 
   // drivetrain
   private DifferentialDrive dualDrive = new DifferentialDrive(leftMotors, rightMotors);
@@ -44,7 +49,7 @@ public class Drivetrain extends Subsystem {
   // encoders
   private CANEncoder lEncoder = new CANEncoder(leftMotorBack);
   private CANEncoder rEncoder = new CANEncoder(rightMotorBack);
-  
+
   // gyro
   public AHRS gyro;
 
@@ -75,7 +80,7 @@ public class Drivetrain extends Subsystem {
 
   /** Return average position between the encoders */
   public double getPosition() {
-    return ((lEncoder.getPosition() + rEncoder.getPosition()*-1) / 2.0);
+    return ((lEncoder.getPosition() + rEncoder.getPosition() * -1) / 2.0);
   }
 
   /**

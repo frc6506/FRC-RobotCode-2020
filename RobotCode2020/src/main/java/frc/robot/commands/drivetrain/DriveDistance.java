@@ -18,11 +18,11 @@ public class DriveDistance extends Command {
   private double D = 0.0055;
   private PIDController pidDriveController = new PIDController(P, I, D);
   private PIDController pidTurnController = new PIDController(P, I, D);
-  
+
   private double rotationsToTarget;
   private double ticksTarget;
   private int ticksPerRotation = 42;
-  private double wheelDiameter = 0.5; //ft
+  private double wheelDiameter = 0.5; // ft
 
   /**
    * Drives robot a set distance w/ PID loop to keep it straight
@@ -32,7 +32,7 @@ public class DriveDistance extends Command {
   public DriveDistance(double distance) {
     requires(Robot.drivetrain);
     // calculate # of ticks based off distance
-    rotationsToTarget = distance / (wheelDiameter * Math.PI) * 10.75; 
+    rotationsToTarget = distance / (wheelDiameter * Math.PI) * 10.75;
     pidDriveController.setTolerance(1);
     pidTurnController.setTolerance(0.05);
   }
@@ -43,18 +43,16 @@ public class DriveDistance extends Command {
     Robot.drivetrain.calibrate();
     SmartDashboard.putNumber("Ticks To Target", rotationsToTarget);
     SmartDashboard.putString("Command", "DriveDistance");
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double forwardsSpeed = pidDriveController.calculate(Robot.drivetrain.getPosition(), rotationsToTarget);
+    double forwardsSpeed =
+        pidDriveController.calculate(Robot.drivetrain.getPosition(), rotationsToTarget);
     double turnSpeed = pidTurnController.calculate(Robot.drivetrain.gyro.getAngle(), 0);
     Robot.drivetrain.drive(forwardsSpeed, turnSpeed);
   }
-
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
