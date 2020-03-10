@@ -17,13 +17,12 @@ public class RobotMap {
   public static final int CONTROLLER_1_PORT_ID = 0; // switches temporarily
   public static final int CONTROLLER_2_PORT_ID = 1;
 
-
   // arm ID
   public static final int MOTOR_ARM_ID = 20;
 
   // intake ID
   public static final int MOTOR_MAILBOX_ID = 31;
-  
+
   // drivetrain motors
   public static final int MOTOR_LEFT_BACK_ID = 12;
   public static final int MOTOR_RIGHT_BACK_ID = 10;
@@ -32,7 +31,7 @@ public class RobotMap {
 
   public static final int MOTOR_CLIMB_EXTENDER_ID = 40;
   public static final int MOTOR_CLIMB_WINCH_ID = 50;
-  
+
   // left joystick (horizontal)
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
   // left joystick (horizontal)

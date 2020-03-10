@@ -16,22 +16,21 @@ import frc.robot.commands.ExtendClimb;
 import frc.robot.commands.RetractClimb;
 import frc.robot.commands.ArmPosition;
 
-
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
  * and command groups that allow control of the robot.
  */
 public class OI {
-  //CONTROLLER 1
+  // CONTROLLER 1
   public Joystick controller = new Joystick(RobotMap.CONTROLLER_1_PORT_ID);
-  //Co-CONTROLLER
+  // Co-CONTROLLER
   public Joystick coController = new Joystick(RobotMap.CONTROLLER_2_PORT_ID);
   public Button aCoButton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
   public Button bCoButton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
   public Button xCoButton = new JoystickButton(controller, RobotMap.X_BUTTON_ID);
   public Button leftBumperCoButton = new JoystickButton(controller, RobotMap.LEFT_BUMPER_BUTTON_ID);
-  public Button rightBumperCoButton = new JoystickButton(controller, RobotMap.RIGHT_BUMPER_BUTTON_ID);
-
+  public Button rightBumperCoButton =
+      new JoystickButton(controller, RobotMap.RIGHT_BUMPER_BUTTON_ID);
 
   public OI() {
     aCoButton.whileHeld(new WinchWind());

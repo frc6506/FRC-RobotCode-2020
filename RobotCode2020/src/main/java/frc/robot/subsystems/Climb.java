@@ -14,8 +14,7 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import frc.robot.commands.*; 
-
+import frc.robot.commands.*;
 
 /** Add your docs here. */
 public class Climb extends Subsystem {
@@ -30,7 +29,7 @@ public class Climb extends Subsystem {
   }
 
   public void turnWinch(double voltage) {
-   winchMotor.set(ControlMode.PercentOutput, voltage);
+    winchMotor.set(ControlMode.PercentOutput, voltage);
   }
 
   @Override
