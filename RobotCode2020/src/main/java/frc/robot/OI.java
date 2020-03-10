@@ -14,6 +14,7 @@ import frc.robot.commands.WinchUnwind;
 import frc.robot.commands.WinchWind;
 import frc.robot.commands.ExtendClimb;
 import frc.robot.commands.RetractClimb;
+import frc.robot.commands.ArmPosition;
 
 
 /**
@@ -21,17 +22,23 @@ import frc.robot.commands.RetractClimb;
  * and command groups that allow control of the robot.
  */
 public class OI {
-  public Joystick controller = new Joystick(RobotMap.CONTROLLER_PORT_ID);
-  public Button aButton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
-  public Button bButton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
-  public Button leftBumperButton = new JoystickButton(controller, RobotMap.LEFT_BUMPER_BUTTON_ID);
-  public Button rightBumperButton = new JoystickButton(controller, RobotMap.RIGHT_BUMPER_BUTTON_ID);
+  //CONTROLLER 1
+  public Joystick controller = new Joystick(RobotMap.CONTROLLER_1_PORT_ID);
+  //Co-CONTROLLER
+  public Joystick coController = new Joystick(RobotMap.CONTROLLER_2_PORT_ID);
+  public Button aCoButton = new JoystickButton(controller, RobotMap.A_BUTTON_ID);
+  public Button bCoButton = new JoystickButton(controller, RobotMap.B_BUTTON_ID);
+  public Button xCoButton = new JoystickButton(controller, RobotMap.X_BUTTON_ID);
+  public Button leftBumperCoButton = new JoystickButton(controller, RobotMap.LEFT_BUMPER_BUTTON_ID);
+  public Button rightBumperCoButton = new JoystickButton(controller, RobotMap.RIGHT_BUMPER_BUTTON_ID);
+
 
   public OI() {
-    aButton.whileHeld(new WinchWind());
-    bButton.whileHeld(new WinchUnwind());
-    leftBumperButton.whileHeld(new ExtendClimb());
-    rightBumperButton.whileHeld(new RetractClimb());
+    aCoButton.whileHeld(new WinchWind());
+    bCoButton.whileHeld(new WinchUnwind());
+    xCoButton.whileHeld(new ArmPosition());
+    leftBumperCoButton.whileHeld(new ExtendClimb());
+    rightBumperCoButton.whileHeld(new RetractClimb());
   }
 
   public double getAxis(int axis) {

@@ -28,7 +28,7 @@ public class Arm extends Subsystem {
     armMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
     // config PID parameters
     armMotor.config_kF(0, 0, 10);
-		armMotor.config_kP(0, 0, 10);
+		armMotor.config_kP(0, 0.3, 10);
 		armMotor.config_kI(0, 0, 10);
 		armMotor.config_kD(0, 0, 10);
   }
@@ -48,7 +48,19 @@ public class Arm extends Subsystem {
     armMotor.set(ControlMode.PercentOutput, value); 
   } 
 
-  public void setSetpoint(double setpoint) {
-    armMotor.set(ControlMode.Position, setpoint);
+  public boolean atSetpoint() {
+    return (Math.abs(armMotor.getSelectedSensorPosition() - 4600) < 30);
   }
+
+
+  public void setSetpointUp(double setpoint) {
+    SmartDashboard.putString("setSetpoint called:", "yes :)");
+    armMotor.set(ControlMode.Position, 4600);
+  }
+  /*
+  public void setSetpointDown(double setpoint) {
+    SmartDashboard.putString("setSetpoint called:", "yes :)");
+    armMotor.set(ControlMode.Position, 3000);
+  }
+  */
 }

@@ -26,9 +26,9 @@ public class Drive extends Command {
   @Override
   protected void execute() {
     double speed = -1 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_FORWARDS_ID);
-    double rotation = Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID);
+    double rotation = 0.75 * Robot.m_oi.getAxis(RobotMap.JOYSTICK_DRIVE_ROTATION_ID);
 
-    Robot.drivetrain.drive(Math.pow(speed, 3.0), Math.pow(rotation, 3.0));
+    Robot.drivetrain.drive(Math.pow(speed, 3.0), rotation);
   }
 
   // Make this return true when this Command no longer needs to run execute()

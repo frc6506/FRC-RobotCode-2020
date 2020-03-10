@@ -14,17 +14,19 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import frc.robot.commands.*; 
+
 
 /** Add your docs here. */
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  Spark climbExtendMotor = new Spark(RobotMap.MOTOR_CLIMB_EXTENDER_ID);
+  VictorSPX climbExtendMotor = new VictorSPX(RobotMap.MOTOR_CLIMB_EXTENDER_ID);
   VictorSPX winchMotor = new VictorSPX(RobotMap.MOTOR_CLIMB_WINCH_ID);
 
   // Wrapper class
   public void extendClimb(double voltage) {
-    climbExtendMotor.set(voltage);
+    climbExtendMotor.set(ControlMode.PercentOutput, voltage);
   }
 
   public void turnWinch(double voltage) {

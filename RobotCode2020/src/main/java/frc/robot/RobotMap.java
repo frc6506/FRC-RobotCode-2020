@@ -14,7 +14,9 @@ package frc.robot;
  */
 public class RobotMap {
   // controller port
-  public static final int CONTROLLER_PORT_ID = 0;
+  public static final int CONTROLLER_1_PORT_ID = 0; // switches temporarily
+  public static final int CONTROLLER_2_PORT_ID = 1;
+
 
   // arm ID
   public static final int MOTOR_ARM_ID = 20;
@@ -28,8 +30,8 @@ public class RobotMap {
   public static final int MOTOR_LEFT_FRONT_ID = 13;
   public static final int MOTOR_RIGHT_FRONT_ID = 11;
 
-  public static final int MOTOR_CLIMB_EXTENDER_ID = 0;
-  public static final int MOTOR_CLIMB_WINCH_ID = 40;
+  public static final int MOTOR_CLIMB_EXTENDER_ID = 40;
+  public static final int MOTOR_CLIMB_WINCH_ID = 50;
   
   // left joystick (horizontal)
   public static final int JOYSTICK_DRIVE_FORWARDS_ID = 1;
@@ -43,8 +45,9 @@ public class RobotMap {
   // buttons
   public static final int A_BUTTON_ID = 1;
   public static final int B_BUTTON_ID = 2;
-  public static final int LEFT_BUMPER_BUTTON_ID = 3;
-  public static final int RIGHT_BUMPER_BUTTON_ID = 4;
+  public static final int X_BUTTON_ID = 3;
+  public static final int LEFT_BUMPER_BUTTON_ID = 5;
+  public static final int RIGHT_BUMPER_BUTTON_ID = 6;
 
   // backwards button
   public static final int LB_BUTTON_ID = 4;
